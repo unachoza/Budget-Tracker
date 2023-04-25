@@ -1,12 +1,7 @@
 import React from "react";
-import DropDownInput from "../Inputs/DropDownInput";
 
 const Form = () => {
-  return (
-    <div className="form-container" style={{ width: "400px", height: "400px", border: "solid 3px" }}>
-      <DropDownInput />
-    </div>
-  );
+  return <div className="form-content">Form here</div>;
 };
 
 export default Form;
