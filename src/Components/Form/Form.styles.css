@@ -1,0 +1,17 @@
+.form-content {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  border: solid grey;
+  border-radius: 3px;
+}
+input {
+  display: flex;
+  display: inline-block;
+  margin: 5px;
+}
+
+input[type="text"]:focus {
+  outline: 2px solid lightblue;
+  border: none;
+}
