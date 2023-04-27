@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import TextInput from "../Inputs/TextInput";
+import { useTransactionCalculation } from "../../Hooks/useTransactionCalculation";
+import { NEW_TRANSACTION, INITIAL_TRANSACTION_LIST, INITIAL_TRANSACTION_SUM } from "../../Constants/constants";
+
 import "./Form.styles.css";
 
 interface FormValues {
@@ -7,8 +11,14 @@ interface FormValues {
   amount: number | string;
   date: string;
 }
+
 const Form = () => {
   const [formValues, setFormValues] = useState<FormValues>({ type: "", category: "", amount: "", date: "" });
+  const [transactionSum, transactionList] = useTransactionCalculation(
+    NEW_TRANSACTION,
+    INITIAL_TRANSACTION_LIST,
+    INITIAL_TRANSACTION_SUM
+  );
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -22,26 +32,10 @@ const Form = () => {
     <div className="form">
       <div className="title"></div>
       <div className="form-content">
-        <label>Type</label>
-        <input name="type" type="text" value={formValues.type} placeholder="" onChange={(e) => handleInputChange(e)} />
-        <label>Category</label>
-        <input
-          name="category"
-          type="text"
-          value={formValues.category}
-          placeholder=""
-          onChange={(e) => handleInputChange(e)}
-        />
-        <label>Amount</label>
-        <input
-          name="amount"
-          type="text"
-          value={formValues.amount}
-          placeholder=""
-          onChange={(e) => handleInputChange(e)}
-        />
-        <label>Date</label>
-        <input name="date" type="text" value={formValues.date} placeholder="" onChange={(e) => handleInputChange(e)} />
+        <TextInput label="Transaction Type" name="type" placeholder="" setFormValues={handleInputChange} />
+        <TextInput label="Category" name="category" placeholder="" setFormValues={handleInputChange} />
+        <TextInput label="Dollar Amount" name="amount" placeholder="" setFormValues={handleInputChange} />
+        <TextInput label="Date" name="date" placeholder="" setFormValues={handleInputChange} />
       </div>
     </div>
   );
